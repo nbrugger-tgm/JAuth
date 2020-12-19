@@ -2,6 +2,7 @@ package com.niton.jauth;
 
 import com.niton.util.Logging;
 import com.niton.util.config.Config;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -11,12 +12,12 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountManagerTest {
-	private List<User> userz = new ArrayList<>();
-	private AccountManager<User,String> manager;
+	private static List<User> userz = new ArrayList<>();
+	private static AccountManager<User,String> manager;
 
-	@Test
-	public void prep(){
-		Logging.init("JAuth Test");
+	@BeforeAll
+	public static void prep(){
+		Logging.init("JAuth Test","logs");
 		Config.init("config.cfg");
 		manager = new AccountManager<>(new AuthenticationHandler<User,String>() {
 
