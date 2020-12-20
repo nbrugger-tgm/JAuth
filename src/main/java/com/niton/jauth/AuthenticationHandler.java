@@ -6,8 +6,9 @@ public interface AuthenticationHandler<A,C> {
 	/**
 	 * Called when an empty password user is added. The random new password should be sent to the user
 	 * @param password the random generated password
+	 * @param user the authenticateable entity to send the password to
 	 */
-	void sendInitPassword(String password);
+	void sendInitPassword(String password,A user);
 
 	/**
 	 * Should save the user persistently

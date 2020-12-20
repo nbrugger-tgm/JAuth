@@ -22,8 +22,8 @@ class AccountManagerTest {
 		manager = new AccountManager<>(new AuthenticationHandler<User,String>() {
 
 			@Override
-			public void sendInitPassword(String password) {
-				System.out.println("Init pwd : "+password);
+			public void sendInitPassword(String password,User u) {
+				System.out.println("Init pwd : "+password+ " for "+u.name);
 			}
 
 
@@ -89,6 +89,7 @@ class AccountManagerTest {
 	@Test
 	void addAuthenticateable() {
 		manager.addAuthenticateable(new User("Nils"), "ich bin kühl");
+		manager.addAuthenticateable(new User("Anna"), null);
 	}
 
 	@Test

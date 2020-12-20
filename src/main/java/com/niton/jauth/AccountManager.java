@@ -112,7 +112,7 @@ public class AccountManager<A,C> implements Authenticator<String> {
 			if (supportRandomInitPassword) {
 				Logging.log(Logging.LogContext.SECURITY, "Generate random user password");
 				password = getRandomID(8, 10);
-				auther.sendInitPassword(password);
+				auther.sendInitPassword(password,user);
 			}else
 				throw new UnsupportedOperationException("Cannot add no password user without supportRandomInitPassword");
 		}
@@ -178,7 +178,10 @@ public class AccountManager<A,C> implements Authenticator<String> {
 			sessionTries.remove(ip);
 			sessionIpBlocks.remove(ip);
 		}
-		return auther.getAuthenticateable(u);
+		if(auther.existsAuthenticatableById(u))
+			return auther.getAuthenticateable(u);
+		else
+			return null;
 	}
 
 	private boolean checkIp(String ip) {
