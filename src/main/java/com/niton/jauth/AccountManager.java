@@ -169,6 +169,7 @@ public class AccountManager<A,C> implements Authenticator<String> {
 		if(u == null){
 			sessionTries.put(ip, (sessionTries.containsKey(ip) ? (sessionTries.get(ip)+1) : 1));
 			sessionIpBlocks.put(ip, System.currentTimeMillis());
+			return null;
 		}else{
 			if(creationTime.containsKey(key) && System.currentTimeMillis()-creationTime.get(key) > 1000L *60* new AuthConfig(Config.cfg).security.session.valid_for) {
 				token.remove(key);
